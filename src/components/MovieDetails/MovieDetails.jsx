@@ -57,6 +57,7 @@ const MovieDetails = () => {
       </Link>
       {/* Outlet для дочірніх маршрутів Cast та Reviews */}
       <Outlet />
+      
     </div>
   );
 };
