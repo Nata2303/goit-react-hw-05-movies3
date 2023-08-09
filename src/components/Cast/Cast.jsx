@@ -27,7 +27,7 @@ const Cast = () => {
       <h3 onClick={handleCastClick}>Cast</h3>
       {isCastVisible && (
         <div>
-          <h1>Cast</h1>
+          {/* <h1>Cast</h1> */}
           {/* Display cast information */}
           {cast.map(actor => (
             <div key={actor.id}>

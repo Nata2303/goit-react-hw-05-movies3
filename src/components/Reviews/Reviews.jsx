@@ -22,7 +22,7 @@ const Reviews = () => {
 
   return (
     <div>
-      <h2>Reviews</h2>
+      {/* <h2>Reviews</h2> */}
       {reviews.length > 0 ? (
         reviews.map(review => (
           <div key={review.id}>
