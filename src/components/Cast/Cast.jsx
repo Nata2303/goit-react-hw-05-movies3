@@ -6,7 +6,7 @@ import Api from '../../Api';
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
-  const [isCastVisible, setIsCastVisible] = useState(false);
+  // const [isCastVisible, setIsCastVisible] = useState(false);
 
   useEffect(() => {
     const fetchMovieCast = async () => {
@@ -17,15 +17,15 @@ const Cast = () => {
     fetchMovieCast();
   }, [movieId]);
 
-  const handleCastClick = () => {
-    setIsCastVisible(!isCastVisible);
-  };
+  // const handleCastClick = () => {
+  //   setIsCastVisible(!isCastVisible);
+  // };
 
   return (
     <div>
       {/* Collapsible Cast section */}
-      <h3 onClick={handleCastClick}>Cast</h3>
-      {isCastVisible && (
+      {/* <h3 onClick={handleCastClick}>Cast</h3> */}
+      {/* {isCastVisible && ( */}
         <div>
           {/* <h1>Cast</h1> */}
           {/* Display cast information */}
@@ -45,7 +45,7 @@ const Cast = () => {
             </div>
           ))}
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 };
