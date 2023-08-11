@@ -8,21 +8,40 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+  const searchMovies = useCallback(async query => {
+    try {
+      const data = await Api.searchMovies(query);
+      setSearchResults(data.results);
+    } catch (error) {
+      console.error('Error searching movies:', error);
+      setSearchResults([]);
+    }
+  }, []);
+
   const handleSearchSubmit = useCallback(
-    async event => {
+    event => {
       event.preventDefault();
-      try {
-        const data = await Api.searchMovies(searchQuery);
-        setSearchResults(data.results);
-        // Обновление URL с поисковым запросом
-        navigate(`?query=${searchQuery}`);
-      } catch (error) {
-        console.error('Error searching movies:', error);
-        setSearchResults([]);
-      }
+      searchMovies(searchQuery);
+      navigate(`?query=${searchQuery}`);
     },
-    [searchQuery, navigate]
+    [searchQuery, navigate, searchMovies]
   );
+
+  // const handleSearchSubmit = useCallback(
+  //   async event => {
+  //     event.preventDefault();
+  //     try {
+  //       const data = await Api.searchMovies(searchQuery);
+  //       setSearchResults(data.results);
+  //       // Обновление URL с поисковым запросом
+  //       navigate(`?query=${searchQuery}`);
+  //     } catch (error) {
+  //       console.error('Error searching movies:', error);
+  //       setSearchResults([]);
+  //     }
+  //   },
+  //   [searchQuery, navigate]
+  // );
 
   useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
