@@ -28,7 +28,7 @@ const MovieDetails = () => {
   });
 
   const handleGoBack = () => {
-    navigate(-1);
+    navigate(`/movies`);
   };
 
   return (
@@ -57,7 +57,7 @@ const MovieDetails = () => {
       </Link>
       {/* Outlet для дочірніх маршрутів Cast та Reviews */}
       <Outlet />
-      
+
     </div>
   );
 };

@@ -8,6 +8,7 @@ const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
+
   const searchMovies = useCallback(async query => {
     try {
       const data = await Api.searchMovies(query);
@@ -43,14 +44,19 @@ const Movies = () => {
   //   [searchQuery, navigate]
   // );
 
-  useEffect(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const query = queryParams.get('query');
-    if (query) {
-      setSearchQuery(query);
-      handleSearchSubmit();
-    }
-  }, [handleSearchSubmit]);
+  useEffect(
+    () => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const query = queryParams.get('query');
+      if (query) {
+        setSearchQuery(query);
+        searchMovies(query);
+        // handleSearchSubmit();
+      }
+    },
+    [searchMovies]
+    // [handleSearchSubmit]
+  );
   return (
     <div>
       <h1>Search Movies</h1>

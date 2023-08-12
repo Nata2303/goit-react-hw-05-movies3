@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams,  } from 'react-router-dom';
 import Api from '../../Api';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
+  
 
   useEffect(() => {
     const fetchMovieReviews = async () => {
