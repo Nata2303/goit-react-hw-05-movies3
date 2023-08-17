@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate, Outlet, Link } from 'react-router-dom';
 import Api from '../../Api';
 import css from './movieDetails.module.css';
+import { useLocation } from 'react-router-dom';
 
 const MovieDetails = () => {
+  const location = useLocation();
   const navigate = useNavigate();
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
@@ -17,6 +19,10 @@ const MovieDetails = () => {
     fetchMovieDetails();
   }, [movieId]);
 
+useEffect(() => {
+  localStorage.setItem('fromLocation', location.state?.from);
+}, [location.state?.from]);
+
   if (!movieDetails) {
     return <div>Loading...</div>;
   }
@@ -27,8 +33,14 @@ const MovieDetails = () => {
     maximumFractionDigits: 1,
   });
 
+  const fromLocation = localStorage.getItem('fromLocation');
+
   const handleGoBack = () => {
-    navigate(`/movies`);
+    if (fromLocation === 'movies') {
+      navigate('/movies');
+    } else {
+      navigate('/home');
+    }
   };
 
   return (

@@ -27,23 +27,6 @@ const Movies = () => {
     },
     [searchQuery, navigate, searchMovies]
   );
-
-  // const handleSearchSubmit = useCallback(
-  //   async event => {
-  //     event.preventDefault();
-  //     try {
-  //       const data = await Api.searchMovies(searchQuery);
-  //       setSearchResults(data.results);
-  //       // Обновление URL с поисковым запросом
-  //       navigate(`?query=${searchQuery}`);
-  //     } catch (error) {
-  //       console.error('Error searching movies:', error);
-  //       setSearchResults([]);
-  //     }
-  //   },
-  //   [searchQuery, navigate]
-  // );
-
   useEffect(
     () => {
       const queryParams = new URLSearchParams(window.location.search);
@@ -51,11 +34,9 @@ const Movies = () => {
       if (query) {
         setSearchQuery(query);
         searchMovies(query);
-        // handleSearchSubmit();
       }
     },
     [searchMovies]
-    // [handleSearchSubmit]
   );
   return (
     <div>

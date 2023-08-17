@@ -21,7 +21,11 @@ const Home = () => {
       <ul>
         {trendingMovies.map(movie => (
           <li className={css.movie} key={movie.id}>
-            <Link className={css.link} to={`/movies/${movie.id}`}>
+            <Link
+              className={css.link}
+              to={`/movies/${movie.id}`}
+              state={{ from: 'home' }}
+            >
               {movie.title}
             </Link>
           </li>
